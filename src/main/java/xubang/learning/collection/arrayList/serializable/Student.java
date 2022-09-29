@@ -37,9 +37,7 @@ public class Student implements Serializable {
         builder.append(this.name);
         builder.append(" , age = ");
         builder.append(this.age);
-        return "Student{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                '}';
+        builder.append(" }");
+        return builder.toString();
     }
 }

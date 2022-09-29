@@ -1,6 +1,8 @@
 package xubang.learning.collection.arrayList.serializable;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author XuBang
@@ -12,6 +14,32 @@ public class SerializableLearning {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         writeObject();
         readObject();
+        instanceOperate();
+    }
+
+    private static void instanceOperate() throws IOException, ClassNotFoundException {
+        Student xubang = new Student("xubang", 18);
+        Student masike = new Student("masike", 50);
+        Student kobe = new Student("kobe", 35);
+        Student aobama = new Student("aobama", 60);
+
+        ArrayList<Student> arrayList = new ArrayList<>();
+        arrayList.add(xubang);
+        arrayList.add(masike);
+        arrayList.add(kobe);
+        arrayList.add(aobama);
+
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("/Users/xubang/IdeaProjects/JavaGod/src/main/java/xubang/learning/collection/arrayList/serializable/data.txt"));
+        oos.writeObject(arrayList);
+        oos.close();
+
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("/Users/xubang/IdeaProjects/JavaGod/src/main/java/xubang/learning/collection/arrayList/serializable/data.txt"));
+        List<Student> studentList = (List<Student>) ois.readObject();
+
+        for (Student student : studentList) {
+            System.out.println("**"+student);
+        }
+
     }
 
     /**
@@ -37,6 +65,9 @@ public class SerializableLearning {
         Student stu = (Student) ois.readObject();
         System.out.println(stu);
     }
+
+
+
 
 
 }
